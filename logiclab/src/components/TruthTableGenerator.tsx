@@ -215,16 +215,18 @@ export default function TruthTableGenerator({ initialExpression }: TruthTableGen
           </div>
 
           {/* Guidelines Tips box */}
-          <div className="bg-gradient-to-tr from-[#fbfbfe] to-[#f5f5fa] rounded-2xl p-5 border border-slate-200/60 premium-shadow-sm flex gap-4 items-start relative overflow-hidden">
-            <div className="w-9 h-9 bg-rose-50 rounded-lg flex items-center justify-center text-[#a80006] shrink-0 mt-0.5 shadow-sm">
-              <Info className="w-5 h-5" />
+          <div className="notebook-sheet paper-clip-accent rounded-xl p-6 border border-[#e2e2e5]/80 premium-shadow-md relative overflow-hidden pl-10">
+            {/* Notebook binding dots on the left */}
+            <div className="absolute left-2.5 top-0 bottom-0 w-1 flex flex-col justify-around py-4 pointer-events-none">
+              <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+              <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+              <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+              <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
             </div>
-            <div>
-              <h4 className="font-bold text-sm text-[#1a1c1e] mb-1">Consejo Pro</h4>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                Usa paréntesis para definir precedencia. Los operadores lógicos se evalúan siguiendo los órdenes de precedencia académica estándar: <span className="font-semibold font-mono text-[#a80006]">¬, ∧, ∨, →, ↔</span>.
-              </p>
-            </div>
+            <h4 className="font-bold text-sm text-[#a80006] mb-1 font-headline-sm tracking-wide">Consejo Pro</h4>
+            <p className="text-xs text-slate-500 leading-relaxed font-semibold">
+              Usa paréntesis para definir precedencia. Los operadores lógicos se evalúan siguiendo los órdenes de precedencia académica estándar: <span className="font-semibold font-mono text-[#a80006] bg-[#ffe5e1]/40 px-1 rounded">¬, ∧, ∨, →, ↔</span>.
+            </p>
           </div>
         </div>
 
@@ -242,6 +244,46 @@ export default function TruthTableGenerator({ initialExpression }: TruthTableGen
               <p className="text-sm text-slate-400 max-w-sm font-medium">
                 Construye tu expresión lógica a la izquierda y haz clic en generar para visualizar la matriz de verdad aquí.
               </p>
+            </div>
+          ) : result.error ? (
+            /* Syntax Error State */
+            <div className="notebook-sheet paper-clip-accent border border-[#e7bdb7] rounded-2xl p-8 premium-shadow-md flex flex-col justify-center min-h-[400px] relative overflow-hidden pl-12" id="logic-error-panel">
+              {/* Notebook binding dots on the left */}
+              <div className="absolute left-3 top-0 bottom-0 w-1 flex flex-col justify-around py-8 pointer-events-none">
+                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
+                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
+                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
+                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
+                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
+              </div>
+              
+              <div className="flex items-center gap-3.5 mb-5 select-none">
+                <div className="w-12 h-12 bg-rose-50 border border-rose-100 rounded-xl flex items-center justify-center text-[#a80006] shadow-sm">
+                  <AlertCircle className="w-6 h-6 animate-bounce" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold font-headline-md text-[#a80006]">
+                    Error de Sintaxis
+                  </h3>
+                  <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
+                    Verificación de Reglas Lógicas
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-[#ffe5e1]/40 border border-[#e7bdb7]/60 rounded-xl p-5 mb-6 text-sm text-[#a80006] font-mono leading-relaxed font-semibold">
+                {result.error}
+              </div>
+              
+              <div className="text-slate-500 text-xs space-y-2 leading-relaxed">
+                <p className="font-bold text-slate-600">Recomendaciones para corregir:</p>
+                <ul className="list-disc pl-5 space-y-1 font-medium">
+                  <li>Verifica que no tengas dos operadores binarios juntos (ej. <span className="font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-700">∧ ∧</span>).</li>
+                  <li>Asegúrate de colocar un operador entre variables (ej. usa <span className="font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-700">P ∧ Q</span> en lugar de <span className="font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-700">P Q</span>).</li>
+                  <li>Comprueba que todos los paréntesis estén cerrados correctamente.</li>
+                  <li>No termines ni empieces la expresión con un operador binario.</li>
+                </ul>
+              </div>
             </div>
           ) : (
             /* Result State Evaluation Matrix */

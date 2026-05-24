@@ -146,11 +146,18 @@ export default function FormulaSheet() {
             return (
               <div 
                 key={f.id}
-                className="premium-card border border-[#e2e2e5]/60 rounded-2xl p-6 premium-shadow-sm hover:premium-shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group"
+                className="notebook-sheet border border-[#e2e2e5]/80 hover:border-[#a80006]/35 rounded-xl p-6 premium-shadow-sm hover:premium-shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group pl-9"
               >
+                {/* Miniature notebook binding dots */}
+                <div className="absolute left-2.5 top-0 bottom-0 w-1 flex flex-col justify-around py-4 pointer-events-none">
+                  <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+                  <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+                  <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
+                </div>
+
                 <div>
                   {/* Card category tags */}
-                  <div className="flex items-center justify-between mb-4.5 select-none">
+                  <div className="flex items-center justify-between mb-4 select-none">
                     <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-lg border ${
                       f.category === 'algebra' 
                         ? 'bg-blue-500/10 text-blue-700 border-blue-500/20' 

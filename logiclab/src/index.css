@@ -58,3 +58,114 @@ body {
   box-shadow: 0 0 20px 2px rgba(254, 183, 0, 0.06);
 }
 
+/* Premium tactile, organic, and engineering style textures */
+.math-grid-bg {
+  background-image: 
+    linear-gradient(rgba(168, 0, 6, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 0, 6, 0.035) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.dot-paper-bg {
+  background-image: radial-gradient(rgba(168, 0, 6, 0.06) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+.engineering-border {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(226, 226, 229, 0.8);
+  position: relative;
+}
+
+.engineering-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(168, 0, 6, 0.15);
+  pointer-events: none;
+  border-radius: inherit;
+  margin: -3px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.engineering-border:hover::before {
+  opacity: 1;
+}
+
+/* Notebook paper sheet look with red left margin line */
+.notebook-sheet {
+  background: #ffffff;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 4px rgba(0, 0, 0, 0.02);
+  border: 1px solid #e8e8ea;
+}
+
+.notebook-sheet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 36px;
+  width: 1.5px;
+  height: 100%;
+  background-color: rgba(168, 0, 6, 0.25);
+  pointer-events: none;
+}
+
+/* Premium gradient border card */
+.gradient-border-card {
+  position: relative;
+  background: white;
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+.gradient-border-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(135deg, #a80006, #fed700, #e31820);
+  border-radius: 1.05rem;
+  z-index: -1;
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border-card:hover::before {
+  opacity: 0.85;
+}
+
+/* Subtle texture overlays */
+.card-texture-subtle {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23a80006' fill-opacity='0.03' d='M1 3h1v1H1V3zm2-2h1v1H2V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* School notebook corner paper-clip decoration */
+.paper-clip-accent {
+  position: relative;
+}
+
+.paper-clip-accent::after {
+  content: '📎';
+  position: absolute;
+  top: -8px;
+  right: 16px;
+  font-size: 1.4rem;
+  transform: rotate(15deg);
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
+  opacity: 0.85;
+}
+
+/* Hand-written / Note feel */
+.font-handwritten {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+
