@@ -133,15 +133,12 @@ export default function Dashboard({ userProfile, onScreenChange, onSelectSavedEx
               <div 
                 key={item.id}
                 onClick={() => handleRecentClick(item)}
-                className="notebook-sheet border border-[#e2e2e5]/70 hover:border-[#a80006]/40 rounded-xl p-6 premium-shadow-sm hover:premium-shadow-md hover:-translate-y-1 cursor-pointer transition-all duration-300 group relative pl-9 overflow-hidden"
+                className={`premium-info-card p-6 cursor-pointer group pl-7 ${
+                  item.type === 'Truth Table' || item.type === 'Logic'
+                    ? 'premium-indicator-crimson'
+                    : 'premium-indicator-amber'
+                }`}
               >
-                {/* Miniature notebook binding dots */}
-                <div className="absolute left-2 top-0 bottom-0 w-1 flex flex-col justify-around py-3 pointer-events-none">
-                  <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
-                  <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
-                  <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
-                </div>
-
                 <div className="flex items-center gap-2 mb-3">
                   <span className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#a80006] transition-colors duration-300">
                     <History className="w-3.5 h-3.5" />

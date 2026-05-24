@@ -59,18 +59,6 @@ body {
 }
 
 /* Premium tactile, organic, and engineering style textures */
-.math-grid-bg {
-  background-image: 
-    linear-gradient(rgba(168, 0, 6, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168, 0, 6, 0.035) 1px, transparent 1px);
-  background-size: 16px 16px;
-}
-
-.dot-paper-bg {
-  background-image: radial-gradient(rgba(168, 0, 6, 0.06) 1.5px, transparent 1.5px);
-  background-size: 16px 16px;
-}
-
 .engineering-border {
   border-width: 1px;
   border-style: solid;
@@ -97,23 +85,52 @@ body {
   opacity: 1;
 }
 
-/* Notebook paper sheet look with red left margin line */
-.notebook-sheet {
+/* Homogeneous Premium Info Card Design System */
+.premium-info-card {
   background: #ffffff;
+  border: 1px solid rgba(226, 226, 229, 0.7);
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.02), 0 1px 4px -1px rgba(0, 0, 0, 0.01);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 4px rgba(0, 0, 0, 0.02);
-  border: 1px solid #e8e8ea;
+  overflow: hidden;
 }
 
-.notebook-sheet::before {
+.premium-info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.04), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+  border-color: rgba(168, 0, 6, 0.2);
+}
+
+/* Edge indicator stripes for different logic or mathematical categories */
+.premium-indicator-crimson::after {
   content: '';
   position: absolute;
   top: 0;
-  left: 36px;
-  width: 1.5px;
-  height: 100%;
-  background-color: rgba(168, 0, 6, 0.25);
-  pointer-events: none;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #a80006, #e31820);
+}
+
+.premium-indicator-blue::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+}
+
+.premium-indicator-amber::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #d97706, #f59e0b);
 }
 
 /* Premium gradient border card */
@@ -147,25 +164,5 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23a80006' fill-opacity='0.03' d='M1 3h1v1H1V3zm2-2h1v1H2V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
-/* School notebook corner paper-clip decoration */
-.paper-clip-accent {
-  position: relative;
-}
-
-.paper-clip-accent::after {
-  content: '📎';
-  position: absolute;
-  top: -8px;
-  right: 16px;
-  font-size: 1.4rem;
-  transform: rotate(15deg);
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
-  opacity: 0.85;
-}
-
-/* Hand-written / Note feel */
-.font-handwritten {
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-}
 
 

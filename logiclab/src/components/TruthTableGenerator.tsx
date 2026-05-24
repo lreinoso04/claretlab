@@ -215,16 +215,9 @@ export default function TruthTableGenerator({ initialExpression }: TruthTableGen
           </div>
 
           {/* Guidelines Tips box */}
-          <div className="notebook-sheet paper-clip-accent rounded-xl p-6 border border-[#e2e2e5]/80 premium-shadow-md relative overflow-hidden pl-10">
-            {/* Notebook binding dots on the left */}
-            <div className="absolute left-2.5 top-0 bottom-0 w-1 flex flex-col justify-around py-4 pointer-events-none">
-              <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
-              <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
-              <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
-              <div className="w-1.5 h-1.5 bg-slate-300 rounded-full"></div>
-            </div>
-            <h4 className="font-bold text-sm text-[#a80006] mb-1 font-headline-sm tracking-wide">Consejo Pro</h4>
-            <p className="text-xs text-slate-500 leading-relaxed font-semibold">
+          <div className="premium-info-card p-6 premium-indicator-crimson">
+            <h4 className="font-bold text-sm text-[#a80006] mb-1 font-headline-sm tracking-wide pl-2">Consejo Pro</h4>
+            <p className="text-xs text-slate-500 leading-relaxed font-semibold pl-2">
               Usa paréntesis para definir precedencia. Los operadores lógicos se evalúan siguiendo los órdenes de precedencia académica estándar: <span className="font-semibold font-mono text-[#a80006] bg-[#ffe5e1]/40 px-1 rounded">¬, ∧, ∨, →, ↔</span>.
             </p>
           </div>
@@ -247,17 +240,8 @@ export default function TruthTableGenerator({ initialExpression }: TruthTableGen
             </div>
           ) : result.error ? (
             /* Syntax Error State */
-            <div className="notebook-sheet paper-clip-accent border border-[#e7bdb7] rounded-2xl p-8 premium-shadow-md flex flex-col justify-center min-h-[400px] relative overflow-hidden pl-12" id="logic-error-panel">
-              {/* Notebook binding dots on the left */}
-              <div className="absolute left-3 top-0 bottom-0 w-1 flex flex-col justify-around py-8 pointer-events-none">
-                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-                <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-              </div>
-              
-              <div className="flex items-center gap-3.5 mb-5 select-none">
+            <div className="premium-info-card p-8 premium-indicator-crimson flex flex-col justify-center min-h-[400px]" id="logic-error-panel">
+              <div className="flex items-center gap-3.5 mb-5 select-none pl-2">
                 <div className="w-12 h-12 bg-rose-50 border border-rose-100 rounded-xl flex items-center justify-center text-[#a80006] shadow-sm">
                   <AlertCircle className="w-6 h-6 animate-bounce" />
                 </div>
@@ -271,11 +255,11 @@ export default function TruthTableGenerator({ initialExpression }: TruthTableGen
                 </div>
               </div>
               
-              <div className="bg-[#ffe5e1]/40 border border-[#e7bdb7]/60 rounded-xl p-5 mb-6 text-sm text-[#a80006] font-mono leading-relaxed font-semibold">
+              <div className="bg-[#ffe5e1]/40 border border-[#e7bdb7]/60 rounded-xl p-5 mb-6 text-sm text-[#a80006] font-mono leading-relaxed font-semibold mx-2">
                 {result.error}
               </div>
               
-              <div className="text-slate-500 text-xs space-y-2 leading-relaxed">
+              <div className="text-slate-500 text-xs space-y-2 leading-relaxed pl-2">
                 <p className="font-bold text-slate-600">Recomendaciones para corregir:</p>
                 <ul className="list-disc pl-5 space-y-1 font-medium">
                   <li>Verifica que no tengas dos operadores binarios juntos (ej. <span className="font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-700">∧ ∧</span>).</li>

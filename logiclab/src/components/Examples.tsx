@@ -8,23 +8,14 @@ export default function Examples() {
         <p className="text-slate-600">Comprende cómo funcionan las tablas de verdad y operaciones algebraicas simples, paso a paso.</p>
       </header>
 
-      <section className="notebook-sheet paper-clip-accent border border-[#e2e2e5] rounded-2xl p-8 premium-shadow-md relative overflow-hidden pl-12">
-        {/* Notebook binding dots on the left */}
-        <div className="absolute left-3 top-0 bottom-0 w-1 flex flex-col justify-around py-8 pointer-events-none">
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-        </div>
-
+      <section className="premium-info-card p-8 premium-indicator-crimson">
         <h2 className="text-2xl font-bold text-[#1a1c1e] mb-6 flex items-center gap-2.5 font-headline-md">
           <List className="text-[#a80006] w-6 h-6" />
           Ejemplos de Tablas de Verdad
         </h2>
 
         <div className="space-y-6">
-          <div className="dot-paper-bg p-5 rounded-xl border border-slate-200 hover:border-[#a80006]/35 hover:shadow-sm transition-all duration-300">
+          <div className="bg-slate-50/50 p-5 rounded-xl border border-slate-200/80 hover:shadow-sm transition-all duration-300">
             <h3 className="font-bold text-slate-800 mb-2 font-headline-sm flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#a80006]"></span>
               1. Negación (¬ A)
@@ -44,7 +35,7 @@ export default function Examples() {
             </table>
           </div>
 
-          <div className="dot-paper-bg p-5 rounded-xl border border-slate-200 hover:border-[#a80006]/35 hover:shadow-sm transition-all duration-300">
+          <div className="bg-slate-50/50 p-5 rounded-xl border border-slate-200/80 hover:shadow-sm transition-all duration-300">
             <h3 className="font-bold text-slate-800 mb-2 font-headline-sm flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#a80006]"></span>
               2. Conjunción "Y" (A ∧ B)
@@ -67,7 +58,7 @@ export default function Examples() {
             </table>
           </div>
           
-          <div className="dot-paper-bg p-5 rounded-xl border border-slate-200 hover:border-[#a80006]/35 hover:shadow-sm transition-all duration-300">
+          <div className="bg-slate-50/50 p-5 rounded-xl border border-slate-200/80 hover:shadow-sm transition-all duration-300">
             <h3 className="font-bold text-slate-800 mb-2 font-headline-sm flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#a80006]"></span>
               3. Disyunción "O" (A ∨ B)
@@ -92,23 +83,14 @@ export default function Examples() {
         </div>
       </section>
 
-      <section className="notebook-sheet paper-clip-accent border border-[#e2e2e5] rounded-2xl p-8 premium-shadow-md relative overflow-hidden pl-12">
-        {/* Notebook binding dots on the left */}
-        <div className="absolute left-3 top-0 bottom-0 w-1 flex flex-col justify-around py-8 pointer-events-none">
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-        </div>
-
+      <section className="premium-info-card p-8 premium-indicator-crimson">
         <h2 className="text-2xl font-bold text-[#1a1c1e] mb-6 flex items-center gap-2.5 font-headline-md">
           <Calculator className="text-[#a80006] w-6 h-6" />
           Ejemplos Básicos de Álgebra
         </h2>
         
         <div className="space-y-6">
-          <div className="flex bg-[#ffe5e1]/10 rounded-xl p-5 border border-[#e7bdb7]/40 gap-4 items-start dot-paper-bg">
+          <div className="flex bg-slate-50/40 rounded-xl p-5 border border-slate-200/60 gap-4 items-start">
             <div className="bg-white p-2.5 border border-[#e2e2e5] rounded-xl shadow-sm shrink-0">
               <Lightbulb className="text-yellow-500 w-5 h-5"/>
             </div>
@@ -124,7 +106,7 @@ export default function Examples() {
             </div>
           </div>
           
-          <div className="flex bg-[#ffe5e1]/10 rounded-xl p-5 border border-[#e7bdb7]/40 gap-4 items-start dot-paper-bg">
+          <div className="flex bg-slate-50/40 rounded-xl p-5 border border-slate-200/60 gap-4 items-start">
             <div className="bg-white p-2.5 border border-[#e2e2e5] rounded-xl shadow-sm shrink-0">
               <Info className="text-blue-500 w-5 h-5"/>
             </div>
