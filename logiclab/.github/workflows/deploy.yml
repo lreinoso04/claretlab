@@ -29,13 +29,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
+      - name: Detect folder, install and build
+        run: |
+          if [ -d "claretlab" ]; then
+            echo "Folder 'claretlab' detected."
+            cd claretlab
+            npm ci
+            npm run build
+            cd ..
+            mv claretlab/dist ./dist
+          elif [ -d "logiclab" ]; then
+            echo "Folder 'logiclab' detected."
+            cd logiclab
+            npm ci
+            npm run build
+            cd ..
+            mv logiclab/dist ./dist
+          else
+            echo "No subfolder detected, building from repository root."
+            npm ci
+            npm run build
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

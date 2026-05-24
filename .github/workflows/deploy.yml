@@ -29,16 +29,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: claretlab/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
-        working-directory: claretlab
-
-      - name: Build
-        run: npm run build
-        working-directory: claretlab
+      - name: Detect folder, install and build
+        run: |
+          if [ -d "claretlab" ]; then
+            echo "Folder 'claretlab' detected."
+            cd claretlab
+            npm ci
+            npm run build
+            cd ..
+            mv claretlab/dist ./dist
+          elif [ -d "logiclab" ]; then
+            echo "Folder 'logiclab' detected."
+            cd logiclab
+            npm ci
+            npm run build
+            cd ..
+            mv logiclab/dist ./dist
+          else
+            echo "No subfolder detected, building from repository root."
+            npm ci
+            npm run build
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +58,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: claretlab/dist
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
