@@ -10,13 +10,34 @@ const LS_KEYS = {
   USER_PROFILE: 'logiclab_user_profile'
 };
 
-const DEFAULT_PROFILE: UserProfile = {
-  uid: 'local-student-alejandro',
-  name: 'Alejandro Reinoso',
-  email: 'lreinoso2704@gmail.com',
-  isPremium: true,
-  role: '3-A-Sec'
-};
+export const DEFAULT_PROFILES: UserProfile[] = [
+  {
+    uid: 'local-student-alejandro',
+    name: 'Alejandro Reinoso',
+    email: 'lreinoso2704@gmail.com',
+    isPremium: true,
+    role: '3-A-Sec',
+    photoURL: 'alejandro'
+  },
+  {
+    uid: 'local-student-laura',
+    name: 'Laura Soto',
+    email: 'laurasoto@gmail.com',
+    isPremium: true,
+    role: '3-A-Sec',
+    photoURL: 'laura'
+  },
+  {
+    uid: 'local-student-amelia',
+    name: 'Amelia Vallejo',
+    email: 'ameliavallejo@gmail.com',
+    isPremium: true,
+    role: '3-A-Sec',
+    photoURL: 'amelia'
+  }
+];
+
+const DEFAULT_PROFILE = DEFAULT_PROFILES[0];
 
 const DEFAULT_ACTIVITIES: RecentActivity[] = [
   { id: 'act-1', expression: '(P ∧ Q) → R', type: 'Truth Table', timestamp: 'Hace 2 horas', resultSummary: 'Tabla de Verdad Generada' },
@@ -35,23 +56,21 @@ const DEFAULT_CALC_HISTORY: CalcHistoryItem[] = [
 // USER PROFILE DB OPERATIONS
 // ----------------------------------------------------
 export async function getUserProfile(uid: string): Promise<UserProfile> {
+  const defaultProf = DEFAULT_PROFILES.find(p => p.uid === uid) || DEFAULT_PROFILES[0];
+
   if (!isFirebaseReal || !db) {
-    const saved = localStorage.getItem(LS_KEYS.USER_PROFILE);
+    const key = `${LS_KEYS.USER_PROFILE}_${uid}`;
+    const saved = localStorage.getItem(key);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (parsed.name === 'Alejandro José Reinoso Sánchez' || parsed.role === '3-A SEC') {
-          parsed.name = 'Alejandro Reinoso';
-          parsed.role = '3-A-Sec';
-          localStorage.setItem(LS_KEYS.USER_PROFILE, JSON.stringify(parsed));
-        }
         return parsed;
       } catch {
-        return DEFAULT_PROFILE;
+        return defaultProf;
       }
     }
-    localStorage.setItem(LS_KEYS.USER_PROFILE, JSON.stringify(DEFAULT_PROFILE));
-    return DEFAULT_PROFILE;
+    localStorage.setItem(key, JSON.stringify(defaultProf));
+    return defaultProf;
   }
 
   const collectionName = 'users';
@@ -60,25 +79,22 @@ export async function getUserProfile(uid: string): Promise<UserProfile> {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       const data = docSnap.data();
-      if (data.name === 'Alejandro José Reinoso Sánchez' || data.role === '3-A SEC') {
-        const updated = { ...data, name: 'Alejandro Reinoso', role: '3-A-Sec' };
-        await setDoc(docRef, updated);
-        return { uid, ...updated } as UserProfile;
-      }
       return { uid, ...data } as UserProfile;
     }
     // Create new profile doc in Firestore if not existing
-    const newProfile = { name: 'Alejandro Reinoso', email: auth.currentUser?.email || 'lreinoso2704@gmail.com', isPremium: true, role: '3-A-Sec' };
-    await setDoc(docRef, newProfile);
-    return { uid, ...newProfile } as UserProfile;
+    await setDoc(docRef, defaultProf);
+    return defaultProf;
   } catch (error) {
     handleFirestoreError(error, OperationType.GET, `${collectionName}/${uid}`);
-    return DEFAULT_PROFILE;
+    return defaultProf;
   }
 }
 
 export async function updateUserProfile(profile: UserProfile): Promise<void> {
   if (!isFirebaseReal || !db) {
+    const key = `${LS_KEYS.USER_PROFILE}_${profile.uid}`;
+    localStorage.setItem(key, JSON.stringify(profile));
+    // Also save as active profile
     localStorage.setItem(LS_KEYS.USER_PROFILE, JSON.stringify(profile));
     return;
   }
@@ -89,7 +105,8 @@ export async function updateUserProfile(profile: UserProfile): Promise<void> {
       name: profile.name,
       email: profile.email,
       isPremium: profile.isPremium,
-      role: profile.role
+      role: profile.role,
+      photoURL: profile.photoURL || ''
     });
   } catch (error) {
     handleFirestoreError(error, OperationType.WRITE, `${collectionName}/${profile.uid}`);

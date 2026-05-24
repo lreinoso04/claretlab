@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ScreenType, UserProfile } from './types';
-import { getUserProfile } from './utils/dbHelper';
+import { getUserProfile, DEFAULT_PROFILES } from './utils/dbHelper';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import TruthTableGenerator from './components/TruthTableGenerator';
@@ -8,24 +8,42 @@ import MathCalculator from './components/MathCalculator';
 import FormulaSheet from './components/FormulaSheet';
 import Examples from './components/Examples';
 import SettingsSupport from './components/SettingsSupport';
+import ProfileSelection from './components/ProfileSelection';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('dashboard');
   const [selectedExpression, setSelectedExpression] = useState<string | undefined>(undefined);
   const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function initProfile() {
+      setIsLoading(true);
       try {
-        // Load default institutional student Alejandro's credentials
-        const data = await getUserProfile('local-student-alejandro');
-        setProfile(data);
+        const activeUid = localStorage.getItem('claretlab_active_profile_uid');
+        if (activeUid) {
+          const data = await getUserProfile(activeUid);
+          setProfile(data);
+        }
       } catch (err) {
         console.error('Failed to resolve profile', err);
+      } finally {
+        setIsLoading(false);
       }
     }
     initProfile();
   }, []);
+
+  const handleSelectProfile = (selected: UserProfile) => {
+    localStorage.setItem('claretlab_active_profile_uid', selected.uid);
+    setProfile(selected);
+    setCurrentScreen('dashboard');
+  };
+
+  const handleSwitchProfile = () => {
+    localStorage.removeItem('claretlab_active_profile_uid');
+    setProfile(null);
+  };
 
   const handleSelectExpressionFormDashboard = (expr: string) => {
     setSelectedExpression(expr);
@@ -38,12 +56,21 @@ export default function App() {
     setCurrentScreen(screen);
   };
 
-  if (!profile) {
+  if (isLoading) {
     return (
       <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#f9f9fc]">
         <div className="w-12 h-12 border-4 border-[#a80006] border-t-transparent rounded-full animate-spin"></div>
         <p className="mt-4 text-sm font-semibold text-slate-500">Iniciando Consola ClaretLab...</p>
       </div>
+    );
+  }
+
+  if (!profile) {
+    return (
+      <ProfileSelection 
+        profiles={DEFAULT_PROFILES} 
+        onSelectProfile={handleSelectProfile} 
+      />
     );
   }
 
@@ -54,6 +81,7 @@ export default function App() {
         currentScreen={currentScreen} 
         onScreenChange={handleScreenChange} 
         userProfile={profile} 
+        onSwitchProfile={handleSwitchProfile}
       />
 
       {/* Main Content Viewport */}

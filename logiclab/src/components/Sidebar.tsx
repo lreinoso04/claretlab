@@ -1,15 +1,24 @@
 import { ScreenType, UserProfile } from '../types';
-import { Grid, Calculator, BookOpen, Settings, HelpCircle, GraduationCap, Award } from 'lucide-react';
+import { Grid, Calculator, BookOpen, Settings, HelpCircle, GraduationCap, Award, Users } from 'lucide-react';
 import claretCrestUrl from '@/img/Logo.jpg';
-import studentAvatarUrl from '@/img/Foto_Alejandro.jpeg';
+import avatarAlejandro from '@/img/Foto_Alejandro.jpeg';
+import avatarLaura from '@/img/Foto_Laura.png';
+import avatarAmelia from '@/img/Foto_Amelia.png';
+
+const avatarMap: Record<string, string> = {
+  alejandro: avatarAlejandro,
+  laura: avatarLaura,
+  amelia: avatarAmelia
+};
 
 interface SidebarProps {
   currentScreen: ScreenType;
   onScreenChange: (screen: ScreenType) => void;
   userProfile: UserProfile;
+  onSwitchProfile: () => void;
 }
 
-export default function Sidebar({ currentScreen, onScreenChange, userProfile }: SidebarProps) {
+export default function Sidebar({ currentScreen, onScreenChange, userProfile, onSwitchProfile }: SidebarProps) {
 
   const navigationItems = [
     { id: 'truth-tables', label: 'Tablas de Verdad', icon: Grid },
@@ -44,7 +53,7 @@ export default function Sidebar({ currentScreen, onScreenChange, userProfile }: 
           <img
             alt={userProfile.name}
             className="w-10 h-10 rounded-full border border-[#a80006] object-cover"
-            src={studentAvatarUrl}
+            src={avatarMap[userProfile.photoURL || ''] || avatarAlejandro}
             onError={(e) => {
               // fallback default avatar if loading fails
               (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&fit=crop&q=80";
@@ -121,6 +130,15 @@ export default function Sidebar({ currentScreen, onScreenChange, userProfile }: 
         >
           <HelpCircle className="w-[18px] h-[18px] text-slate-500" />
           <span>Soporte</span>
+        </button>
+
+        <button
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-slate-600 hover:bg-[#e8e8ea] hover:text-[#1a1c1e] cursor-pointer"
+          onClick={onSwitchProfile}
+          id="btn-sidebar-switch-profile"
+        >
+          <Users className="w-[18px] h-[18px] text-slate-500" />
+          <span>Cambiar Perfil</span>
         </button>
       </div>
     </nav>

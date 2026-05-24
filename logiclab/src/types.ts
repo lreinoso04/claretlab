@@ -6,6 +6,7 @@ export interface UserProfile {
   email: string;
   isPremium: boolean;
   role: string;
+  photoURL?: string;
 }
 
 export interface RecentActivity {
