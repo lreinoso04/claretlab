@@ -12,6 +12,14 @@ const LS_KEYS = {
 
 export const DEFAULT_PROFILES: UserProfile[] = [
   {
+    uid: 'local-student-amelia',
+    name: 'Amelia Vallejo',
+    email: 'ameliavallejo@gmail.com',
+    isPremium: true,
+    role: '3-A-Sec',
+    photoURL: 'amelia'
+  },
+  {
     uid: 'local-student-alejandro',
     name: 'Alejandro Reinoso',
     email: 'lreinoso2704@gmail.com',
@@ -26,14 +34,6 @@ export const DEFAULT_PROFILES: UserProfile[] = [
     isPremium: true,
     role: '3-A-Sec',
     photoURL: 'laura'
-  },
-  {
-    uid: 'local-student-amelia',
-    name: 'Amelia Vallejo',
-    email: 'ameliavallejo@gmail.com',
-    isPremium: true,
-    role: '3-A-Sec',
-    photoURL: 'amelia'
   }
 ];
 
