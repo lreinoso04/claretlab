@@ -1,6 +1,6 @@
 import { UserProfile } from '../types';
 import claretLogo from '@/img/Logo.jpg';
-import avatarAlejandro from '@/img/Foto_Alejandro.jpeg';
+import avatarAlejandro from '@/img/Foto_Alejandro.png';
 import avatarLaura from '@/img/Foto_Laura.png';
 import avatarAmelia from '@/img/Foto_Amelia.png';
 

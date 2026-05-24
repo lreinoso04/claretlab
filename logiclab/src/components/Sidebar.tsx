@@ -1,7 +1,7 @@
 import { ScreenType, UserProfile } from '../types';
 import { Grid, Calculator, BookOpen, Settings, HelpCircle, GraduationCap, Award, Users } from 'lucide-react';
 import claretCrestUrl from '@/img/Logo.jpg';
-import avatarAlejandro from '@/img/Foto_Alejandro.jpeg';
+import avatarAlejandro from '@/img/Foto_Alejandro.png';
 import avatarLaura from '@/img/Foto_Laura.png';
 import avatarAmelia from '@/img/Foto_Amelia.png';
 
