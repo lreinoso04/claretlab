@@ -1,0 +1,86 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default catch-all security boundary: Block any unidentified paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reuseable global functions for Attribute-Based Access Control (ABAC)
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // 1. Users collection rules
+    match /users/{userId} {
+      allow get: if true;
+      allow list: if true;
+      allow create, update: if (userId == 'local-student-alejandro' || isOwner(userId)) && isValidUser(request.resource.data);
+      allow delete: if false; // profiles cannot be deleted on the client
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['name', 'email', 'isPremium', 'role'])
+        && data.keys().size() == 4
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.email is string && data.email.size() > 5 && data.email.size() <= 100
+        && data.isPremium is bool
+        && data.role is string && data.role.size() > 0 && data.role.size() <= 50;
+    }
+
+    // 2. Recent Activities collection rules
+    match /recentActivities/{activityId} {
+      allow read: if true;
+      allow create: if isValidActivity(request.resource.data);
+      allow update, delete: if true;
+    }
+
+    function isValidActivity(data) {
+      return data.keys().hasAll(['expression', 'type', 'timestamp', 'resultSummary'])
+        && data.keys().size() == 4
+        && data.expression is string && data.expression.size() <= 500
+        && data.type is string && data.type.size() <= 100
+        && data.timestamp is string && data.timestamp.size() <= 100
+        && data.resultSummary is string && data.resultSummary.size() <= 200;
+    }
+
+    // 3. Calculator History collection rules
+    match /calculatorHistory/{historyId} {
+      allow read: if true;
+      allow create: if isValidHistory(request.resource.data);
+      allow delete: if true;
+    }
+
+    function isValidHistory(data) {
+      return data.keys().hasAll(['expression', 'result', 'timestamp'])
+        && data.keys().size() == 3
+        && data.expression is string && data.expression.size() <= 500
+        && data.result is string && data.result.size() <= 200
+        && data.timestamp is int;
+    }
+
+    // 4. Support Tickets collection rules
+    match /supportTickets/{ticketId} {
+      allow create: if isValidTicket(request.resource.data);
+      allow read: if true;
+    }
+
+    function isValidTicket(data) {
+      return data.keys().hasAll(['subject', 'message', 'createdAt', 'status'])
+        && data.keys().size() == 4
+        && data.subject is string && data.subject.size() > 0 && data.subject.size() <= 200
+        && data.message is string && data.message.size() > 0 && data.message.size() <= 5000
+        && data.createdAt is string
+        && data.status is string && data.status in ['pending', 'resolved'];
+    }
+  }
+}

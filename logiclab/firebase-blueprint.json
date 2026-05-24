@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "User profile data for academic personalization in LogicLab",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Student's displayed name" },
+        "email": { "type": "string", "description": "Academic email address associated" },
+        "isPremium": { "type": "boolean", "description": "Premium tier membership status" },
+        "role": { "type": "string", "description": "Institutional title e.g. Student or Assistant" }
+      },
+      "required": ["name", "email", "isPremium", "role"]
+    },
+    "recentActivities": {
+      "title": "Recent Activity",
+      "description": "Historical calculations or truth tables validated recently by the student",
+      "type": "object",
+      "properties": {
+        "expression": { "type": "string", "description": "Mathematical formula string evaluated" },
+        "type": { "type": "string", "description": "Calculation category name" },
+        "timestamp": { "type": "string", "description": "Humanized time or ISO string of creation" },
+        "resultSummary": { "type": "string", "description": "Short explanatory title of calculated item type" }
+      },
+      "required": ["expression", "type", "timestamp", "resultSummary"]
+    },
+    "calculatorHistory": {
+      "title": "Calculator History",
+      "description": "Formulas solved in the keypad calculator panel with timestamp ordering",
+      "type": "object",
+      "properties": {
+        "expression": { "type": "string", "description": "Input equation entered" },
+        "result": { "type": "string", "description": "Resulting solved coefficient value" },
+        "timestamp": { "type": "number", "description": "Unix milliseconds timestamp of calculation event" }
+      },
+      "required": ["expression", "result", "timestamp"]
+    },
+    "supportTickets": {
+      "title": "Support Ticket",
+      "description": "Help requests and bug reports submitted through support console in LogicLab",
+      "type": "object",
+      "properties": {
+        "subject": { "type": "string", "description": "Concise summary theme of help query" },
+        "message": { "type": "string", "description": "Entire feedback elaboration detail from client" },
+        "createdAt": { "type": "string", "description": "ISO format string of submission timestamp" },
+        "status": { "type": "string", "description": "Ticket progression status", "enum": ["pending", "resolved"] }
+      },
+      "required": ["subject", "message", "createdAt", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "Path to profile records"
+    },
+    "/recentActivities/{activityId}": {
+      "schema": "recentActivities",
+      "description": "Logs of recent study items analyzed"
+    },
+    "/calculatorHistory/{historyId}": {
+      "schema": "calculatorHistory",
+      "description": "Sequential math history solved items"
+    },
+    "/supportTickets/{ticketId}": {
+      "schema": "supportTickets",
+      "description": "Issues lodged with helpdesk for LogicLab features"
+    }
+  }
+}

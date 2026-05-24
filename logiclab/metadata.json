@@ -1,0 +1,6 @@
+{
+  "name": "ClaretLab",
+  "description": "Consola académica para análisis de tablas de verdad, calculadora matemática y repositorio de fórmulas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
