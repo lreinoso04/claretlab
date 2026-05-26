@@ -10,6 +10,7 @@ import Examples from './components/Examples';
 import SettingsSupport from './components/SettingsSupport';
 import ProfileSelection from './components/ProfileSelection';
 import Quiz from './components/Quiz';
+import ExplanatoryVideos from './components/ExplanatoryVideos';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('dashboard');
@@ -128,6 +129,10 @@ export default function App() {
             userProfile={profile} 
             onProfileUpdated={setProfile} 
           />
+        )}
+
+        {currentScreen === 'explanatory-videos' && (
+          <ExplanatoryVideos />
         )}
       </main>
     </div>

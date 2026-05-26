@@ -1,5 +1,5 @@
 import { ScreenType, UserProfile } from '../types';
-import { Grid, Calculator, BookOpen, Settings, HelpCircle, GraduationCap, Award, Users, Send, ClipboardList } from 'lucide-react';
+import { Grid, Calculator, BookOpen, Settings, HelpCircle, GraduationCap, Award, Users, Send, ClipboardList, Video } from 'lucide-react';
 import claretCrestUrl from '@/img/Logo.jpg';
 import avatarAlejandro from '@/img/Foto_Alejandro.png';
 import avatarLaura from '@/img/Foto_Laura.png';
@@ -26,6 +26,7 @@ export default function Sidebar({ currentScreen, onScreenChange, userProfile, on
     { id: 'formula-sheet', label: 'Fórmulas', icon: BookOpen },
     { id: 'examples', label: 'Ejemplos', icon: HelpCircle },
     { id: 'quiz', label: 'Formulario de Proposiciones', icon: ClipboardList },
+    { id: 'explanatory-videos', label: 'Videos Explicativos', icon: Video },
   ] as const;
 
   return (
