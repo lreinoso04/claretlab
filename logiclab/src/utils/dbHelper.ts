@@ -22,7 +22,7 @@ export const DEFAULT_PROFILES: UserProfile[] = [
   {
     uid: 'local-student-alejandro',
     name: 'Alejandro Reinoso',
-    email: 'lreinoso2704@gmail.com',
+    email: 'infoclaretlab@claret.edu',
     isPremium: true,
     role: '3-A-Sec',
     photoURL: 'alejandro'

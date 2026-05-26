@@ -26,7 +26,7 @@ export default function Examples({ onSelectExpression }: ExamplesProps) {
           Ejemplos Prácticos de Lógica
         </h1>
         <p className="text-base text-slate-500 font-body-lg max-w-2xl leading-relaxed">
-          La lógica no es solo matemáticas. Es la forma en que pensamos y tomamos decisiones cotidianas. Explora estos ejemplos sencillos diseñados especialmente para bachillerato.
+          La lógica no es solo matemáticas. Es la forma en que pensamos y tomamos decisiones cotidianas. Explora estos ejemplos sencillos diseñados especialmente para estudiantes.
         </p>
       </header>
 
@@ -36,7 +36,7 @@ export default function Examples({ onSelectExpression }: ExamplesProps) {
         
         <h2 className="text-2xl font-bold text-[#1a1c1e] mb-2 flex items-center gap-2.5 font-headline-md">
           <GraduationCap className="text-[#a80006] w-6 h-6" />
-          Lógica en la Vida Real (Bachillerato)
+          Lógica en la Vida Real
         </h2>
         <p className="text-xs text-slate-400 mb-6 font-semibold">
           Haz clic en las pestañas para ver cómo modelamos situaciones del día a día con operadores lógicos.
