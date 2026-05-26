@@ -90,18 +90,22 @@ export default function Quiz({ userProfile }: QuizProps) {
     const payload: Record<string, string> = {
       name: userProfile.name,
       email: userProfile.email,
-      _subject: `[ClaretLab] Evaluación de Proposiciones - Estudiante: ${userProfile.name}`,
-      "Estudiante": userProfile.name,
-      "Correo Estudiante": userProfile.email,
-      "Calificación (Puntos)": `${scorePoints} / 10 puntos`,
-      "Respuestas Correctas": `${correctCount} / ${totalQuestions} correctas`
+      _subject: `[ClaretLab] Cuestionario de Proposiciones - ${userProfile.name} (${scorePoints}/10 pts)`,
+      "--- DATOS DEL ESTUDIANTE ---": "----------------------------------------",
+      "Nombre del Estudiante": userProfile.name,
+      "Correo Institucional": userProfile.email,
+      "Rol / Curso": userProfile.role,
+      "--- CALIFICACIÓN DE LA PRUEBA ---": "----------------------------------------",
+      "Puntuación Final": `${scorePoints} / 10 puntos`,
+      "Respuestas Correctas": `${correctCount} de ${totalQuestions} correctas`,
+      "--- RESPUESTAS DETALLADAS ---": "----------------------------------------"
     };
 
     // Format details of answers for Alejandro's email
     questions.forEach(q => {
       const userAnswer = answers[q.id];
       const isCorrect = userAnswer === q.correct;
-      payload[`P${q.id}_${q.text}`] = `${userAnswer} (${isCorrect ? 'Correcta' : `Incorrecta - Correcta era: ${q.correct}`})`;
+      payload[`Pregunta ${q.id} - ${q.text}`] = `Respuesta: "${userAnswer}" | Resultado: ${isCorrect ? '✅ CORRECTA' : `❌ INCORRECTA (Correcta era: "${q.correct}")`}`;
     });
 
     try {
