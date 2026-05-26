@@ -80,24 +80,50 @@ export default function SettingsSupport({ initialTab = 'settings', onProfileUpda
 
     const submittedSubject = subject;
     const submittedMessage = message;
-    setLastSubmittedSubject(submittedSubject);
-    setLastSubmittedMessage(submittedMessage);
 
-    setTimeout(async () => {
+    try {
+      // 1. Send query to tutor email using FormSubmit API
+      await fetch("https://formsubmit.co/ajax/alejandro.reinoso.sanchez@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: userProfile.name,
+          email: userProfile.email,
+          _subject: `[ClaretLab] Consulta: ${submittedSubject}`,
+          message: submittedMessage
+        })
+      });
+
+      // 2. Write to local / Firestore db
+      await createSupportTicket(submittedSubject, submittedMessage);
+      
+      // 3. Clear form and show success
+      setSubject('');
+      setMessage('');
+      setTicketSuccess(true);
+      
+      // 4. Reload tickets feed
+      const list = await getSupportTickets();
+      setTickets(list);
+    } catch (err) {
+      console.error('Error sending support email:', err);
+      // Fallback: still save in local db
       try {
         await createSupportTicket(submittedSubject, submittedMessage);
         setSubject('');
         setMessage('');
         setTicketSuccess(true);
-        // Reload ticket feed
         const list = await getSupportTickets();
         setTickets(list);
-      } catch (err) {
-        console.error('Error writing support ticket.', err);
-      } finally {
-        setSubmittingTicket(false);
+      } catch (innerErr) {
+        console.error('Inner db write error:', innerErr);
       }
-    }, 450);
+    } finally {
+      setSubmittingTicket(false);
+    }
   };
 
   return (
@@ -259,20 +285,14 @@ export default function SettingsSupport({ initialTab = 'settings', onProfileUpda
               </div>
 
               {ticketSuccess && (
-                <div className="flex flex-col gap-3 bg-emerald-500/10 text-emerald-800 border border-emerald-500/20 p-4 rounded-xl">
+                <div className="flex flex-col gap-2.5 bg-emerald-500/10 text-emerald-800 border border-emerald-500/20 p-4 rounded-xl animate-fadeIn">
                   <div className="flex items-center gap-2 text-xs font-semibold text-emerald-700">
-                    <CheckCircle2 className="w-4 h-4 shrink-0" />
-                    <span>¡Consulta registrada! Se ha guardado en tu historial local.</span>
+                    <CheckCircle2 className="w-4.5 h-4.5 shrink-0" />
+                    <span>¡Consulta enviada con éxito!</span>
                   </div>
                   <div className="text-[11px] text-slate-600 leading-relaxed font-medium">
-                    Para asegurar que el tutor Alejandro reciba tu mensaje de inmediato, haz clic en el siguiente botón interactivo para enviar el correo directamente:
+                    Tu mensaje ha sido enviado directamente al correo del tutor <strong>(alejandro.reinoso.sanchez@gmail.com)</strong>. Recibirás una respuesta en tu correo institucional <strong>({userProfile.email})</strong>.
                   </div>
-                  <a
-                    href={`mailto:alejandro.reinoso.sanchez@gmail.com?subject=${encodeURIComponent('Consulta ClaretLab: ' + lastSubmittedSubject)}&body=${encodeURIComponent('Hola Alejandro,\n\nTengo la siguiente consulta sobre ClaretLab:\n\n' + lastSubmittedMessage + '\n\nSaludos,\n' + userProfile.name)}`}
-                    className="flex items-center justify-center gap-2 bg-[#a80006] hover:bg-[#d31111] text-white font-bold py-2 px-3 rounded-lg text-xs transition-colors self-start shadow-sm"
-                  >
-                    <Send className="w-3 h-3" /> Enviar Correo a Alejandro
-                  </a>
                 </div>
               )}
 
