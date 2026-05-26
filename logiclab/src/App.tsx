@@ -9,6 +9,7 @@ import FormulaSheet from './components/FormulaSheet';
 import Examples from './components/Examples';
 import SettingsSupport from './components/SettingsSupport';
 import ProfileSelection from './components/ProfileSelection';
+import Quiz from './components/Quiz';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('dashboard');
@@ -115,6 +116,10 @@ export default function App() {
               }}
             />
           </div>
+        )}
+
+        {currentScreen === 'quiz' && (
+          <Quiz />
         )}
 
         {currentScreen === 'settings' && (
