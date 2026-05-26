@@ -23,50 +23,52 @@ export default function ExplanatoryVideos() {
   const videosList: VideoData[] = [
     {
       id: 'alejandro',
-      title: 'Generación de Tablas de Verdad',
-      description: 'Aprende a ingresar expresiones lógicas, utilizar los operadores especiales de ClaretLab y analizar los resultados para identificar tautologías, contradicciones y contingencias de forma interactiva.',
+      title: 'Lógica Proposicional y Operaciones Lógicas',
+      description: 'Introducción didáctica sobre lógica proposicional y operaciones fundamentales, abordando la resolución de ejercicios prácticos empleando ejemplos escritos para facilitar el aprendizaje.',
       duration: '3:05 Minutos',
       author: 'Alejandro Reinoso',
       course: 'Estudiante - 3º A de Secundaria',
       videoSrc: videoAlejandro,
       posterSrc: fotoAlejandro,
       topics: [
-        'Ingreso correcto de variables proposicionales (P, Q, R, etc.)',
-        'Uso del teclado virtual para conectores lógicos (∧, ∨, →, ↔, ¬)',
-        'Evaluación paso a paso de la tabla final',
-        'Interpretación del tipo de proposición resultante'
+        'Definición de proposición y valor de verdad',
+        'Construcción de proposiciones compuestas',
+        'Operaciones lógicas (conjunción, disyunción, negación)',
+        'Ejemplos escritos para facilitar la comprensión',
+        'Resolución básica de ejercicios lógicos'
       ]
     },
     {
       id: 'amelia',
-      title: 'Uso de la Calculadora Matemática',
-      description: 'Una guía completa sobre el funcionamiento de la calculadora científica de la plataforma. Descubre cómo resolver límites, derivadas, integrales y cómo aprovechar el historial para tus tareas diarias.',
+      title: 'Conceptos Básicos de Lógica Matemática',
+      description: 'Exposición detallada sobre los fundamentos de lógica matemática y proposiciones, diferenciando enunciados lógicos y explicando la estructura de símbolos dentro de ejercicios prácticos.',
       duration: '1:53 Minutos',
       author: 'Amelia Vallejo',
       course: 'Estudiante - 3º A de Secundaria',
       videoSrc: videoAmelia,
       posterSrc: fotoAmelia,
       topics: [
-        'Sintaxis matemática para funciones avanzadas',
-        'Resolución de límites y cálculo de derivadas',
-        'Integración indefinida y definida con su desglose',
-        'Navegación e importación de fórmulas desde el historial de cálculos'
+        'Identificación de proposiciones lógicas',
+        'Diferenciación de oraciones con valor lógico',
+        'Ejemplos de proposiciones verdaderas y falsas',
+        'Conectores lógicos para proposiciones compuestas',
+        'Símbolos lógicos y su significado práctico'
       ]
     },
     {
       id: 'laura',
-      title: 'Formulario de Proposiciones y Repaso',
-      description: 'Conoce cómo evaluar tu conocimiento con el Quiz interactivo de proposiciones lógicas y cómo repasar conceptos teóricos clave utilizando la hoja de fórmulas del Colegio Claret.',
+      title: 'Lógica Proposicional y Conceptos Básicos',
+      description: 'Explicación educativa sobre lógica proposicional y conceptos básicos de matemáticas discretas, utilizando carteles escritos a mano para ilustrar los temas de manera didáctica y académica.',
       duration: '4:06 Minutos',
       author: 'Laura Soto',
       course: 'Estudiante - 3º A de Secundaria',
       videoSrc: videoLaura,
       posterSrc: fotoLaura,
       topics: [
-        'Acceso y resolución del Formulario de Proposiciones (Quiz)',
-        'Validación de respuestas correctas y retroalimentación',
-        'Consulta rápida de leyes de equivalencia lógica (De Morgan, condicionales)',
-        'Estrategias de estudio interactivo en ClaretLab'
+        'Definición de proposición (verdadero o falso)',
+        'Ejercicios de identificación de enunciados',
+        'Negación de proposiciones simples',
+        'Proposiciones compuestas y conectores lógicos (conjunción, disyunción, implicación, equivalencia, negación)'
       ]
     }
   ];
