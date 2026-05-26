@@ -26,7 +26,6 @@ export default function Sidebar({ currentScreen, onScreenChange, userProfile, on
     { id: 'formula-sheet', label: 'Fórmulas', icon: BookOpen },
     { id: 'examples', label: 'Ejemplos', icon: HelpCircle },
     { id: 'quiz', label: 'Formulario de Proposiciones', icon: ClipboardList },
-    { id: 'support', label: 'Formulario de Consultas', icon: Send },
   ] as const;
 
   return (

@@ -118,21 +118,13 @@ export default function App() {
           </div>
         )}
 
-        {currentScreen === 'quiz' && (
-          <Quiz />
+        {currentScreen === 'quiz' && profile && (
+          <Quiz userProfile={profile} />
         )}
 
         {currentScreen === 'settings' && (
           <SettingsSupport 
             initialTab="settings" 
-            userProfile={profile} 
-            onProfileUpdated={setProfile} 
-          />
-        )}
-
-        {currentScreen === 'support' && (
-          <SettingsSupport 
-            initialTab="support" 
             userProfile={profile} 
             onProfileUpdated={setProfile} 
           />
