@@ -22,6 +22,8 @@ export default function SettingsSupport({ initialTab = 'settings', onProfileUpda
   // Support tickets state
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
+  const [lastSubmittedSubject, setLastSubmittedSubject] = useState('');
+  const [lastSubmittedMessage, setLastSubmittedMessage] = useState('');
   const [tickets, setTickets] = useState<SupportTicket[]>([]);
   const [submittingTicket, setSubmittingTicket] = useState(false);
   const [ticketSuccess, setTicketSuccess] = useState(false);
@@ -76,16 +78,20 @@ export default function SettingsSupport({ initialTab = 'settings', onProfileUpda
     setSubmittingTicket(true);
     setTicketSuccess(false);
 
+    const submittedSubject = subject;
+    const submittedMessage = message;
+    setLastSubmittedSubject(submittedSubject);
+    setLastSubmittedMessage(submittedMessage);
+
     setTimeout(async () => {
       try {
-        await createSupportTicket(subject, message);
+        await createSupportTicket(submittedSubject, submittedMessage);
         setSubject('');
         setMessage('');
         setTicketSuccess(true);
         // Reload ticket feed
         const list = await getSupportTickets();
         setTickets(list);
-        setTimeout(() => setTicketSuccess(false), 3000);
       } catch (err) {
         console.error('Error writing support ticket.', err);
       } finally {
@@ -217,7 +223,9 @@ export default function SettingsSupport({ initialTab = 'settings', onProfileUpda
             <h2 className="text-xl font-bold font-headline-md text-[#1a1c1e] mb-2 flex items-center gap-2">
               Enviar Consulta Académica
             </h2>
-            <p className="text-xs text-slate-400 mb-6 font-semibold">¿Tienes dudas con el funcionamiento o un teorema? Escribe al tutor de Claret.</p>
+            <p className="text-xs text-slate-400 mb-6 font-semibold">
+              ¿Tienes dudas con el funcionamiento o un teorema? Escribe directamente a <strong>alejandro.reinoso.sanchez@gmail.com</strong>.
+            </p>
 
             <div className="flex flex-col gap-4">
               <div>
@@ -251,9 +259,20 @@ export default function SettingsSupport({ initialTab = 'settings', onProfileUpda
               </div>
 
               {ticketSuccess && (
-                <div className="flex items-center gap-2 bg-emerald-500/10 text-emerald-700 font-semibold text-xs border border-emerald-500/20 p-3.5 rounded-xl">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>¡Consulta registrada en Firestore! Tutor notificará a tu correo.</span>
+                <div className="flex flex-col gap-3 bg-emerald-500/10 text-emerald-800 border border-emerald-500/20 p-4 rounded-xl">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-emerald-700">
+                    <CheckCircle2 className="w-4 h-4 shrink-0" />
+                    <span>¡Consulta registrada! Se ha guardado en tu historial local.</span>
+                  </div>
+                  <div className="text-[11px] text-slate-600 leading-relaxed font-medium">
+                    Para asegurar que el tutor Alejandro reciba tu mensaje de inmediato, haz clic en el siguiente botón interactivo para enviar el correo directamente:
+                  </div>
+                  <a
+                    href={`mailto:alejandro.reinoso.sanchez@gmail.com?subject=${encodeURIComponent('Consulta ClaretLab: ' + lastSubmittedSubject)}&body=${encodeURIComponent('Hola Alejandro,\n\nTengo la siguiente consulta sobre ClaretLab:\n\n' + lastSubmittedMessage + '\n\nSaludos,\n' + userProfile.name)}`}
+                    className="flex items-center justify-center gap-2 bg-[#a80006] hover:bg-[#d31111] text-white font-bold py-2 px-3 rounded-lg text-xs transition-colors self-start shadow-sm"
+                  >
+                    <Send className="w-3 h-3" /> Enviar Correo a Alejandro
+                  </a>
                 </div>
               )}
 

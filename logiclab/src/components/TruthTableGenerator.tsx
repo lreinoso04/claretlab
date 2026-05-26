@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { generateTruthTable, TruthTableResult, normalizeExpression } from '../utils/logicParser';
 import { addRecentActivity } from '../utils/dbHelper';
-import { Table, Download, Info, CheckCircle2, AlertCircle, HelpCircle, Delete } from 'lucide-react';
+import { Table, Download, Info, CheckCircle2, AlertCircle, HelpCircle, Delete, ChevronDown, ChevronUp, BookOpen } from 'lucide-react';
 
 interface TruthTableGeneratorProps {
   initialExpression?: string;
@@ -11,6 +11,7 @@ export default function TruthTableGenerator({ initialExpression }: TruthTableGen
   const [expression, setExpression] = useState(initialExpression || '');
   const [result, setResult] = useState<TruthTableResult | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [activeConcept, setActiveConcept] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -214,12 +215,79 @@ export default function TruthTableGenerator({ initialExpression }: TruthTableGen
             </button>
           </div>
 
-          {/* Guidelines Tips box */}
-          <div className="premium-info-card p-6 premium-indicator-crimson">
-            <h4 className="font-bold text-sm text-[#a80006] mb-1 font-headline-sm tracking-wide pl-2">Consejo Pro</h4>
-            <p className="text-xs text-slate-500 leading-relaxed font-semibold pl-2">
-              Usa paréntesis para definir precedencia. Los operadores lógicos se evalúan siguiendo los órdenes de precedencia académica estándar: <span className="font-semibold font-mono text-[#a80006] bg-[#ffe5e1]/40 px-1 rounded">¬, ∧, ∨, →, ↔</span>.
+          {/* Consejo Pro Quick tip */}
+          <div className="premium-info-card p-5 premium-indicator-crimson mb-4">
+            <h4 className="font-bold text-xs text-[#a80006] mb-1 font-headline-sm tracking-wide flex items-center gap-1">
+              <Info className="w-3.5 h-3.5" /> Consejo de Precedencia
+            </h4>
+            <p className="text-[11px] text-slate-500 leading-relaxed font-semibold">
+              Usa paréntesis para agrupar. El orden académico estándar es: <span className="font-semibold font-mono text-[#a80006] bg-[#ffe5e1]/40 px-1 rounded">¬, ∧, ∨, →, ↔</span>.
             </p>
+          </div>
+
+          {/* Interactive Pedagogical Accordion */}
+          <div className="premium-card border border-[#e2e2e5]/60 rounded-2xl premium-shadow-sm p-5 relative overflow-hidden" id="logic-guide-accordion">
+            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#a80006] to-[#e31820]"></div>
+            
+            <h4 className="font-bold text-xs text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+              <BookOpen className="w-4 h-4 text-[#a80006]" /> Guía de Conceptos Lógicos
+            </h4>
+            
+            <div className="flex flex-col gap-2">
+              {/* Concept 1 */}
+              <div className="border border-slate-100 rounded-lg overflow-hidden">
+                <button
+                  onClick={() => setActiveConcept(activeConcept === 'whatis' ? null : 'whatis')}
+                  className="w-full bg-slate-50 hover:bg-slate-100/80 px-4 py-2.5 flex items-center justify-between text-left text-xs font-bold text-slate-700 transition-colors"
+                >
+                  <span>🤔 ¿Qué es una Tabla de Verdad?</span>
+                  {activeConcept === 'whatis' ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+                {activeConcept === 'whatis' && (
+                  <div className="p-3 bg-white text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 font-medium">
+                    Es una tabla matemática que muestra si una frase compleja es verdadera o falsa según las distintas combinaciones de verdad de sus partes elementales.
+                  </div>
+                )}
+              </div>
+
+              {/* Concept 2 */}
+              <div className="border border-slate-100 rounded-lg overflow-hidden">
+                <button
+                  onClick={() => setActiveConcept(activeConcept === 'operators' ? null : 'operators')}
+                  className="w-full bg-slate-50 hover:bg-slate-100/80 px-4 py-2.5 flex items-center justify-between text-left text-xs font-bold text-slate-700 transition-colors"
+                >
+                  <span>⚡ Operadores Lógicos (Símbolos)</span>
+                  {activeConcept === 'operators' ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+                {activeConcept === 'operators' && (
+                  <div className="p-3 bg-white text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 font-medium space-y-2">
+                    <div><strong className="text-[#a80006] font-mono">¬ (NOT):</strong> Invierte el valor (ej. ¬V = F).</div>
+                    <div><strong className="text-[#a80006] font-mono">∧ (AND):</strong> Verdadero solo si ambos lados son Verdaderos (V).</div>
+                    <div><strong className="text-[#a80006] font-mono">∨ (OR):</strong> Verdadero si al menos uno es Verdadero (V).</div>
+                    <div><strong className="text-[#a80006] font-mono">→ (Implica):</strong> Falso únicamente si el antecedente es Verdadero y el consecuente es Falso.</div>
+                    <div><strong className="text-[#a80006] font-mono">↔ (Equivale):</strong> Verdadero si ambos lados son iguales (V-V o F-F).</div>
+                  </div>
+                )}
+              </div>
+
+              {/* Concept 3 */}
+              <div className="border border-slate-100 rounded-lg overflow-hidden">
+                <button
+                  onClick={() => setActiveConcept(activeConcept === 'results' ? null : 'results')}
+                  className="w-full bg-slate-50 hover:bg-slate-100/80 px-4 py-2.5 flex items-center justify-between text-left text-xs font-bold text-slate-700 transition-colors"
+                >
+                  <span>📊 Tipos de Resultados</span>
+                  {activeConcept === 'results' ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+                {activeConcept === 'results' && (
+                  <div className="p-3 bg-white text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 font-medium space-y-2">
+                    <div><strong className="text-emerald-600">Tautología:</strong> Cuando la última columna es 100% verdadera (V). Representa una verdad absoluta.</div>
+                    <div><strong className="text-rose-600">Contradicción:</strong> Cuando la última columna es 100% falsa (F). Representa algo imposible.</div>
+                    <div><strong className="text-amber-600">Contingencia:</strong> Cuando hay mezcla de Verdaderos (V) y Falsos (F). Depende de la situación.</div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 

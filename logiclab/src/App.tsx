@@ -108,7 +108,12 @@ export default function App() {
         
         {currentScreen === 'examples' && (
           <div className="h-full overflow-y-auto p-4 md:p-8">
-            <Examples />
+            <Examples 
+              onSelectExpression={(expr) => {
+                setSelectedExpression(expr);
+                setCurrentScreen('truth-tables');
+              }}
+            />
           </div>
         )}
 
