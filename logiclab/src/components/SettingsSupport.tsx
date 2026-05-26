@@ -150,7 +150,7 @@ export default function SettingsSupport({ initialTab = 'settings', onProfileUpda
           }`}
           id="btn-tab-support"
         >
-          <HelpCircle className="w-4 h-4" /> Mesa de Soporte
+          <Send className="w-4 h-4" /> Formulario de Consultas
         </button>
       </div>
 
@@ -247,7 +247,7 @@ export default function SettingsSupport({ initialTab = 'settings', onProfileUpda
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#a80006] to-[#e31820]"></div>
 
             <h2 className="text-xl font-bold font-headline-md text-[#1a1c1e] mb-2 flex items-center gap-2">
-              Enviar Consulta Académica
+              Consultas: Preposiciones y Tablas de Verdad
             </h2>
             <p className="text-xs text-slate-400 mb-6 font-semibold">
               ¿Tienes dudas con el funcionamiento o un teorema? Escribe directamente a <strong>alejandro.reinoso.sanchez@gmail.com</strong>.

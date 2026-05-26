@@ -1,5 +1,5 @@
 import { ScreenType, UserProfile } from '../types';
-import { Grid, Calculator, BookOpen, Settings, HelpCircle, GraduationCap, Award, Users } from 'lucide-react';
+import { Grid, Calculator, BookOpen, Settings, HelpCircle, GraduationCap, Award, Users, Send } from 'lucide-react';
 import claretCrestUrl from '@/img/Logo.jpg';
 import avatarAlejandro from '@/img/Foto_Alejandro.png';
 import avatarLaura from '@/img/Foto_Laura.png';
@@ -25,6 +25,7 @@ export default function Sidebar({ currentScreen, onScreenChange, userProfile, on
     { id: 'calculator', label: 'Calculadora Matemática', icon: Calculator },
     { id: 'formula-sheet', label: 'Fórmulas', icon: BookOpen },
     { id: 'examples', label: 'Ejemplos', icon: HelpCircle },
+    { id: 'support', label: 'Formulario de Consultas', icon: Send },
   ] as const;
 
   return (
@@ -120,17 +121,6 @@ export default function Sidebar({ currentScreen, onScreenChange, userProfile, on
           <span>Configuración</span>
         </button>
 
-        <button
-          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${currentScreen === 'support'
-              ? 'bg-[#ffe5e1] text-[#a80006]'
-              : 'text-slate-600 hover:bg-[#e8e8ea] hover:text-[#1a1c1e]'
-            }`}
-          onClick={() => onScreenChange('support')}
-          id="nav-support"
-        >
-          <HelpCircle className="w-[18px] h-[18px] text-slate-500" />
-          <span>Soporte</span>
-        </button>
 
         <button
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-slate-600 hover:bg-[#e8e8ea] hover:text-[#1a1c1e] cursor-pointer"
