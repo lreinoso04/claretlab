@@ -23,52 +23,50 @@ export default function ExplanatoryVideos() {
   const videosList: VideoData[] = [
     {
       id: 'alejandro',
-      title: 'Lógica Proposicional y Operaciones Lógicas',
-      description: 'Introducción didáctica sobre lógica proposicional y operaciones fundamentales, abordando la resolución de ejercicios prácticos empleando ejemplos escritos para facilitar el aprendizaje.',
+      title: 'Proposiciones Simples y Compuestas',
+      description: 'Explicación detallada sobre qué es una proposición (enunciado con valor de verdad) y cómo la unión de proposiciones simples a través de conectores lógicos forma proposiciones compuestas.',
       duration: '3:05 Minutos',
       author: 'Alejandro Reinoso',
       course: 'Estudiante - 3º A de Secundaria',
       videoSrc: videoAlejandro,
       posterSrc: fotoAlejandro,
       topics: [
-        'Definición de proposición y valor de verdad',
-        'Construcción de proposiciones compuestas',
-        'Operaciones lógicas (conjunción, disyunción, negación)',
-        'Ejemplos escritos para facilitar la comprensión',
-        'Resolución básica de ejercicios lógicos'
+        'Definición de proposición lógica',
+        'Ejemplos de enunciados válidos y no válidos',
+        'Concepto y negación de proposiciones simples',
+        'Estructura y formación de proposiciones compuestas'
       ]
     },
     {
       id: 'amelia',
-      title: 'Conceptos Básicos de Lógica Matemática',
-      description: 'Exposición detallada sobre los fundamentos de lógica matemática y proposiciones, diferenciando enunciados lógicos y explicando la estructura de símbolos dentro de ejercicios prácticos.',
+      title: 'Los Tipos de Tablas de Verdad',
+      description: 'Exposición interactiva sobre el funcionamiento de los conectores lógicos y las reglas de verdad para estructurar los distintos tipos de tablas lógicas (conjunción, disyunción, implicación, equivalencia y negación).',
       duration: '1:53 Minutos',
       author: 'Amelia Vallejo',
       course: 'Estudiante - 3º A de Secundaria',
       videoSrc: videoAmelia,
       posterSrc: fotoAmelia,
       topics: [
-        'Identificación de proposiciones lógicas',
-        'Diferenciación de oraciones con valor lógico',
-        'Ejemplos de proposiciones verdaderas y falsas',
-        'Conectores lógicos para proposiciones compuestas',
-        'Símbolos lógicos y su significado práctico'
+        'Uso de conectores y símbolos lógicos',
+        'Tablas de Conjunción y Disyunción',
+        'Lógica de Implicación y Equivalencia',
+        'Aplicación de reglas lógicas en ejercicios sencillos'
       ]
     },
     {
       id: 'laura',
-      title: 'Lógica Proposicional y Conceptos Básicos',
-      description: 'Explicación educativa sobre lógica proposicional y conceptos básicos de matemáticas discretas, utilizando carteles escritos a mano para ilustrar los temas de manera didáctica y académica.',
+      title: 'Tautología, Contradicción y Contingencia',
+      description: 'Aprende a clasificar e interpretar los resultados finales obtenidos al resolver tablas de verdad, reconociendo si representan una verdad absoluta (tautología), falsedad absoluta (contradicción) o un estado mixto (contingencia).',
       duration: '4:06 Minutos',
       author: 'Laura Soto',
       course: 'Estudiante - 3º A de Secundaria',
       videoSrc: videoLaura,
       posterSrc: fotoLaura,
       topics: [
-        'Definición de proposición (verdadero o falso)',
-        'Ejercicios de identificación de enunciados',
-        'Negación de proposiciones simples',
-        'Proposiciones compuestas y conectores lógicos (conjunción, disyunción, implicación, equivalencia, negación)'
+        'Evaluación paso a paso de la columna final',
+        'Identificación y concepto de Tautología',
+        'Identificación y concepto de Contradicción',
+        'Identificación y concepto de Contingencia'
       ]
     }
   ];
