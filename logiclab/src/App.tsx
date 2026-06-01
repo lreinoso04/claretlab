@@ -11,6 +11,7 @@ import SettingsSupport from './components/SettingsSupport';
 import ProfileSelection from './components/ProfileSelection';
 import Quiz from './components/Quiz';
 import ExplanatoryVideos from './components/ExplanatoryVideos';
+import MathPropositions from './components/MathPropositions';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('dashboard');
@@ -133,6 +134,10 @@ export default function App() {
 
         {currentScreen === 'explanatory-videos' && (
           <ExplanatoryVideos />
+        )}
+
+        {currentScreen === 'math-propositions' && (
+          <MathPropositions />
         )}
       </main>
     </div>

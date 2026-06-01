@@ -24,6 +24,7 @@ export default function Sidebar({ currentScreen, onScreenChange, userProfile, on
     { id: 'truth-tables', label: 'Tablas de Verdad', icon: Grid },
     { id: 'calculator', label: 'Calculadora Matemática', icon: Calculator },
     { id: 'formula-sheet', label: 'Fórmulas', icon: BookOpen },
+    { id: 'math-propositions', label: 'Proposiciones Matemáticas', icon: GraduationCap },
     { id: 'examples', label: 'Ejemplos', icon: HelpCircle },
     { id: 'quiz', label: 'Formulario de Proposiciones', icon: ClipboardList },
     { id: 'explanatory-videos', label: 'Videos Explicativos', icon: Video },
