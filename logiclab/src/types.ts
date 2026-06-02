@@ -1,4 +1,4 @@
-export type ScreenType = 'dashboard' | 'truth-tables' | 'calculator' | 'formula-sheet' | 'examples' | 'settings' | 'support' | 'quiz' | 'explanatory-videos' | 'math-propositions';
+export type ScreenType = 'dashboard' | 'truth-tables' | 'calculator' | 'formula-sheet' | 'examples' | 'settings' | 'support' | 'quiz' | 'explanatory-videos' | 'math-propositions' | 'authors-conclusions';
 
 export interface UserProfile {
   uid: string;

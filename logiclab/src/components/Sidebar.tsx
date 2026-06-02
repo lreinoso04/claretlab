@@ -28,6 +28,7 @@ export default function Sidebar({ currentScreen, onScreenChange, userProfile, on
     { id: 'examples', label: 'Ejemplos', icon: HelpCircle },
     { id: 'quiz', label: 'Formulario de Proposiciones', icon: ClipboardList },
     { id: 'explanatory-videos', label: 'Videos Explicativos', icon: Video },
+    { id: 'authors-conclusions', label: 'Autores y Conclusiones', icon: Users },
   ] as const;
 
   return (

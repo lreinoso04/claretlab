@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ScreenType, UserProfile, RecentActivity } from '../types';
 import { getRecentActivities } from '../utils/dbHelper';
-import { Grid, Calculator, History, ChevronRight, Compass } from 'lucide-react';
+import { Grid, Calculator, History, ChevronRight, Compass, Award } from 'lucide-react';
 
 interface DashboardProps {
   userProfile: UserProfile;
@@ -49,6 +49,39 @@ export default function Dashboard({ userProfile, onScreenChange, onSelectSavedEx
         <p className="text-lg text-[#5d3f3b] font-body-lg font-medium opacity-90">
           ¿Qué vamos a resolver hoy?
         </p>
+      </div>
+
+      {/* Rúbrica: Objetivo y Propósito Científico */}
+      <div className="premium-card border border-slate-200/60 rounded-2xl p-6 md:p-8 premium-shadow-sm mb-10 relative overflow-hidden bg-white" id="dashboard-rubric-intro">
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#a80006] to-[#e31820]"></div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Objetivo */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-[#a80006] shrink-0">
+              <Compass className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-bold text-base text-slate-800 mb-1">Objetivo del Proyecto</h3>
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                Esta plataforma busca enseñar de manera interactiva la estructura del pensamiento lógico-matemático. A través de la experimentación con proposiciones y tablas de verdad, aprenderás a formalizar enunciados cotidianos a un lenguaje matemático abstracto y objetivo.
+              </p>
+            </div>
+          </div>
+
+          {/* Propósito Científico */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 shrink-0">
+              <Award className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-bold text-base text-slate-800 mb-1">Propósito Científico</h3>
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                Comprender la validez lógica de un argumento es fundamental en la toma de decisiones ciudadana. La lógica matemática nos capacita para analizar discursos, detectar falacias y estructurar decisiones racionales basadas en hechos, promoviendo una sociedad informada y analítica.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Quick Access Bento-styled Grid */}

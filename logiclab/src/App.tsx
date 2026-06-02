@@ -12,6 +12,8 @@ import ProfileSelection from './components/ProfileSelection';
 import Quiz from './components/Quiz';
 import ExplanatoryVideos from './components/ExplanatoryVideos';
 import MathPropositions from './components/MathPropositions';
+import AuthorsConclusions from './components/AuthorsConclusions';
+
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('dashboard');
@@ -138,6 +140,10 @@ export default function App() {
 
         {currentScreen === 'math-propositions' && (
           <MathPropositions />
+        )}
+
+        {currentScreen === 'authors-conclusions' && (
+          <AuthorsConclusions />
         )}
       </main>
     </div>

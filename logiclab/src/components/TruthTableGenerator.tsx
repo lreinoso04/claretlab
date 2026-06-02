@@ -287,6 +287,27 @@ export default function TruthTableGenerator({ initialExpression }: TruthTableGen
                   </div>
                 )}
               </div>
+
+              {/* Concept 4: Método de Construcción */}
+              <div className="border border-slate-100 rounded-lg overflow-hidden">
+                <button
+                  onClick={() => setActiveConcept(activeConcept === 'method' ? null : 'method')}
+                  className="w-full bg-slate-50 hover:bg-slate-100/80 px-4 py-2.5 flex items-center justify-between text-left text-xs font-bold text-slate-700 transition-colors"
+                >
+                  <span>📏 Método de Construcción (Combinaciones 2ⁿ)</span>
+                  {activeConcept === 'method' ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+                {activeConcept === 'method' && (
+                  <div className="p-3 bg-white text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 font-medium space-y-2">
+                    <p>El número de combinaciones posibles en una tabla se calcula con la fórmula <strong className="text-[#a80006] font-mono">2ⁿ</strong>, donde <strong className="text-[#a80006] font-mono">n</strong> es la cantidad de variables distintas (ej. P, Q, R).</p>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Con <strong>1 variable</strong> (n=1): 2¹ = <strong>2 combinaciones</strong> (filas V, F).</li>
+                      <li>Con <strong>2 variables</strong> (n=2): 2² = <strong>4 combinaciones</strong> (filas VV, VF, FV, FF).</li>
+                      <li>Con <strong>3 variables</strong> (n=3): 2³ = <strong>8 combinaciones</strong> (filas VVV, VVF, VFV, VFF, FVV, FVF, FFV, FFF).</li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

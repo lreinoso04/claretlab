@@ -209,7 +209,7 @@ export default function Examples({ onSelectExpression }: ExamplesProps) {
           Conectores Lógicos Básicos
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {/* Negacion */}
           <div className="bg-white/80 p-5 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
             <div>
@@ -323,6 +323,80 @@ export default function Examples({ onSelectExpression }: ExamplesProps) {
               </tbody>
             </table>
           </div>
+
+          {/* Condicional */}
+          <div className="bg-white/80 p-5 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-rose-500/10 text-[#a80006] border border-rose-500/20">
+                  IMPLIES
+                </span>
+                <button
+                  onClick={() => handleLoadFormula('A → B')}
+                  className="text-xs font-bold text-[#a80006] hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  Cargar <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
+              <h3 className="font-bold text-slate-800 mb-1 font-headline-sm">4. Condicional (A → B)</h3>
+              <p className="text-xs text-slate-500 mb-4 leading-relaxed">
+                Dice "Si A, entonces B". Solo es falso cuando el antecedente A es Verdadero y el consecuente B es Falso.
+              </p>
+            </div>
+
+            <table className="w-full text-xs text-left border-collapse bg-slate-50/50 rounded-lg overflow-hidden border border-slate-200/80 font-mono">
+              <thead className="bg-[#ffe5e1] text-[#a80006]">
+                <tr>
+                  <th className="p-2 border-b border-r text-center font-bold">A</th>
+                  <th className="p-2 border-b border-r text-center font-bold">B</th>
+                  <th className="p-2 border-b text-center font-bold">A → B</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-slate-100"><td className="p-2 border-r text-center">V</td><td className="p-2 border-r text-center">V</td><td className="p-2 text-center font-bold text-emerald-600">V</td></tr>
+                <tr className="border-b border-slate-100"><td className="p-2 border-r text-center">V</td><td className="p-2 border-r text-center">F</td><td className="p-2 text-center font-bold text-rose-600">F</td></tr>
+                <tr className="border-b border-slate-100"><td className="p-2 border-r text-center">F</td><td className="p-2 border-r text-center">V</td><td className="p-2 text-center font-bold text-emerald-600">V</td></tr>
+                <tr><td className="p-2 border-r text-center">F</td><td className="p-2 border-r text-center">F</td><td className="p-2 text-center font-bold text-emerald-600">V</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Bicondicional */}
+          <div className="bg-white/80 p-5 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-rose-500/10 text-[#a80006] border border-rose-500/20">
+                  IFF
+                </span>
+                <button
+                  onClick={() => handleLoadFormula('A ↔ B')}
+                  className="text-xs font-bold text-[#a80006] hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  Cargar <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
+              <h3 className="font-bold text-slate-800 mb-1 font-headline-sm">5. Bicondicional (A ↔ B)</h3>
+              <p className="text-xs text-slate-500 mb-4 leading-relaxed">
+                Dice "A si y solo si B". Es verdadero cuando ambos lados tienen el mismo valor de verdad (ambos V o ambos F).
+              </p>
+            </div>
+
+            <table className="w-full text-xs text-left border-collapse bg-slate-50/50 rounded-lg overflow-hidden border border-slate-200/80 font-mono">
+              <thead className="bg-[#ffe5e1] text-[#a80006]">
+                <tr>
+                  <th className="p-2 border-b border-r text-center font-bold">A</th>
+                  <th className="p-2 border-b border-r text-center font-bold">B</th>
+                  <th className="p-2 border-b text-center font-bold">A ↔ B</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-slate-100"><td className="p-2 border-r text-center">V</td><td className="p-2 border-r text-center">V</td><td className="p-2 text-center font-bold text-emerald-600">V</td></tr>
+                <tr className="border-b border-slate-100"><td className="p-2 border-r text-center">V</td><td className="p-2 border-r text-center">F</td><td className="p-2 text-center font-bold text-rose-600">F</td></tr>
+                <tr className="border-b border-slate-100"><td className="p-2 border-r text-center">F</td><td className="p-2 border-r text-center">V</td><td className="p-2 text-center font-bold text-rose-600">F</td></tr>
+                <tr><td className="p-2 border-r text-center">F</td><td className="p-2 border-r text-center">F</td><td className="p-2 text-center font-bold text-emerald-600">V</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -363,6 +437,55 @@ export default function Examples({ onSelectExpression }: ExamplesProps) {
                 <li>(+) * (-) = (-) : 3 * (-4) = -12</li>
                 <li>(-) * (+) = (-) : (-3) * 4 = -12</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SECTION: Real World Applications (Google and Programming) */}
+      <section className="premium-info-card p-8 premium-indicator-crimson" id="section-real-world-applications">
+        <h2 className="text-2xl font-bold text-[#1a1c1e] mb-6 flex items-center gap-2.5 font-headline-md">
+          <BookOpen className="text-[#a80006] w-6 h-6" />
+          Aplicaciones de la Lógica en el Mundo Real
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Google Search */}
+          <div className="bg-white/80 p-5 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-blue-500/10 text-blue-700 border border-blue-500/20 mb-3 inline-block">
+                Motores de Búsqueda
+              </span>
+              <h4 className="font-bold text-slate-800 mb-2 font-headline-sm">Operadores Booleanos en Google</h4>
+              <p className="text-xs text-slate-500 leading-relaxed mb-4">
+                Google utiliza la lógica de proposiciones para filtrar búsquedas avanzadas en internet. Al usar conectores, puedes refinar tus resultados de la siguiente manera:
+              </p>
+              <ul className="text-xs text-slate-700 space-y-2 list-disc pl-4 font-medium">
+                <li><strong className="text-[#a80006] font-mono">AND (Conjunción):</strong> `gatos AND perros` (muestra páginas que contienen ambos términos).</li>
+                <li><strong className="text-[#a80006] font-mono">OR (Disyunción):</strong> `tareas OR exámenes` (páginas que contienen al menos uno de los dos).</li>
+                <li><strong className="text-[#a80006] font-mono">NOT o "-" (Negación):</strong> `fútbol -mundial` (busca fútbol pero excluye resultados de la copa mundial).</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Programming Logic */}
+          <div className="bg-white/80 p-5 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-purple-500/10 text-purple-700 border border-purple-500/20 mb-3 inline-block">
+                Desarrollo de Software
+              </span>
+              <h4 className="font-bold text-slate-800 mb-2 font-headline-sm">Lógica en la Programación Básica</h4>
+              <p className="text-xs text-slate-500 leading-relaxed mb-4">
+                Los programas toman decisiones evaluando proposiciones lógicas a través de sentencias condicionales (`if/else`). Si el enunciado es verdadero, el código se ejecuta:
+              </p>
+              <div className="bg-[#1e1e24] p-3 rounded-lg border border-slate-800 font-mono text-[11px] text-slate-300 leading-relaxed">
+                <span className="text-slate-400">// Ejemplo en Javascript / Dart:</span><br />
+                <span className="text-purple-400">if</span> (tieneUsuario && tieneContrasena) &#123;<br />
+                &nbsp;&nbsp;iniciarSesion(); <span className="text-slate-400">// Conjunción (AND)</span><br />
+                &#125; <span className="text-purple-400">else if</span> (esInvitado) &#123;<br />
+                &nbsp;&nbsp;accesoTemporal(); <span className="text-slate-400">// Alternativa</span><br />
+                &#125;
+              </div>
             </div>
           </div>
         </div>
